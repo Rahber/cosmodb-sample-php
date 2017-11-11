@@ -11,11 +11,17 @@ function genetrateAuthToken($master,$token,$signature) {
 
 
 function getToken($masterKey,$vrb,$today) {
+	
+	$rType= "dbs";
+	$rID = "/dbs";
     $key = base64_decode($masterKey);
 		$stringSign = $vrb . "\n" .
-        $today . "\n" .
-        "\n";
+		$rType . "\n" .
+		$rID . "\n" .
+		$today . "\n" .
+		"\n";
     $signature = base64_encode(hash_hmac('sha256', strtolower($stringSign), $key, true));
+
     return $signature;
 }
 
