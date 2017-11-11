@@ -7,16 +7,29 @@ www.rahber.net
 
 	//edit only these variables
 	
-	$databaseAccount = "ratest";
-	$databaseAuthorizaiton="gIyZ186hK3QalxBMx8R0FJjzTIJuKr9PSKbBDaTNrJw4PCEj0NqfDPtQQQ3qeIXrgtdx0QoxMKmjuLZeralc6Q==";
-	$queryContentType = "application/json";
+	$databaseAccount = "ratestdb";
 	
+	$today = gmdate('D, d M Y H:i:s T', strtotime('+2 minutes'));
+	$master = 'master';
+	$token = '1.0';
+	$apiVersion = '2017-02-22';
+
+	$masterKey = "H7y2RRsBhTgIqTPxQYsx660vPBb2EXW7dOe6OPjCWyLkmSr1sCAwOfVN4JUzgS4YoiXugvlBfi1seVJEuw4KtQ==";
+	$vrb= "POST";
+	$rType ="";
+	$rID = "";
 	
 	
 	//Do not edit the below.
 	
-	$databaseAccountURL = "https://".$databaseAccount.".documents.azure.com/dbs";
-	$curl = curl_init();
+	$databaseAccountURL = "https://".$databaseAccount.".documents.azure.com/dbs/";
+	$appType = 'application/json';
+	$userAgent = 'ratest/1.0.0';
+	$cacheControl = 'no-cache';
+	$signature ="";
+	$authToken = "";
+	
+	
 	
 
 ?>
