@@ -13,14 +13,14 @@ function genetrateAuthToken($master,$token,$signature) {
 function getToken($masterKey,$vrb,$today) {
 	
 	$rType= "dbs";
-	$rID = "/dbs";
+	$rID = "dbs/MyDatabase";
     $key = base64_decode($masterKey);
-		$stringSign = $vrb . "\n" .
-		$rType . "\n" .
+		$stringSign = strtolower($vrb) . "\n" .
+		strtolower($rType) . "\n" .
 		$rID . "\n" .
-		$today . "\n" .
-		"\n";
-    $signature = base64_encode(hash_hmac('sha256', strtolower($stringSign), $key, true));
+		strtolower($today) . "\n" .
+		""."\n";
+   $signature = base64_encode(hash_hmac('sha256', ($stringSign), $key, true));
 
     return $signature;
 }
@@ -31,8 +31,9 @@ function getAuthHeaders($appType,$userAgent,$cacheControl,$today,$apiVersion,$au
              'User-Agent: ' . $userAgent,
              'Cache-Control: ' . $cacheControl,
              'x-ms-date: ' . $today,
-             'x-ms-version: ' . $apiVersion,
-             'authorization: ' . urlencode($authToken)
+			  'authorization: ' . urlencode($authToken),
+             'x-ms-version: ' . $apiVersion
+            
            );
 }
 
