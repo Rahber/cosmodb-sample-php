@@ -18,6 +18,7 @@
 	$vrb= "POST";
 	$rType ="";
 	$rID = "";
+	$httpCode ="";
 	
 	
 	//Do not edit the below.
