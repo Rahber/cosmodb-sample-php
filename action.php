@@ -51,11 +51,13 @@ function curl_download($databaseAccountURL,$masterKey, $master, $vrb, $today, $t
 }
 
 
-if($_POST){
+if($_POST && $_POST['dbname']!=""){
 	$dbName = $_POST["dbname"];
 	$action = $_GET['action'];
 	$json = curl_download($databaseAccountURL,$masterKey, $master, $vrb, $today, $token, $appType, $apiVersion, $cacheControl, $userAgent, $dbName);
 	$jsonArray = json_decode($json, true);
+}else{
+	header('Location: index.php');
 }
 ?>
 
