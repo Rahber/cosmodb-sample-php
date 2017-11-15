@@ -6,8 +6,8 @@
 
 	//edit only these variables
 	
-	$databaseAccount = "ratestdb"; //please enter your databasename account name
-	$masterKey = "H7y2RRsBhTgIqTPxQYsx660vPBb2EXW7dOe6OPjCWyLkmSr1sCAwOfVN4JUzgS4YoiXugvlBfi1seVJEuw4KtQ=="; //please enter your primary key
+	$databaseAccount = ""; //please enter your databasename account name
+	$masterKey = ""; //please enter your primary key
 	
 	
 	//$today ="wed, 15 nov 2017 15:05:18 gmt";
