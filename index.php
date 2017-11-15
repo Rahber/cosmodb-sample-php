@@ -3,7 +3,7 @@
  /** Rahber Ashraf
  -->
  <head>
- 	<title>COSMO DB php Sample</title>
+ 	<title>COSMOS DB php Sample</title>
  	<style type="text/css">
  	body { background-color: #fff; border-top: solid 10px #000;
  		color: #333; font-size: .85em; margin: 20px; padding: 20px;
@@ -26,7 +26,7 @@
  	</style>
  </head>
  <body>
- 	<h1>Cosmo DB PHP Sample</h1>
+ 	<h1>Cosmos DB PHP Sample</h1>
  
 	
 <a href="createDB.php">Create a database.</a><br />

@@ -65,7 +65,7 @@ if($_POST && $_POST['dbname']!=""){
 
 <html>
  <head>
- 	<title>COSMO DB php Sample</title>
+ 	<title>COSMOS DB php Sample</title>
  	<style type="text/css">
  	body { background-color: #fff; border-top: solid 10px #000;
  		color: #333; font-size: .85em; margin: 20px; padding: 20px;
@@ -88,7 +88,7 @@ if($_POST && $_POST['dbname']!=""){
  	</style>
  </head>
  <body>
- 	<h1><a href="index.php">Cosmo DB PHP Sample</a></h1>
+ 	<h1><a href="index.php">CosmosS DB PHP Sample</a></h1>
 <div style="float:left">
 	
 
