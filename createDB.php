@@ -57,7 +57,7 @@ if($_POST && $_POST['dbname']!=""){
 	$json = curl_download($databaseAccountURL,$masterKey, $master, $vrb, $today, $token, $appType, $apiVersion, $cacheControl, $userAgent, $dbName);
 	$jsonArray = json_decode($json, true);
 }else{
-	header('Location: index.php');
+	//do nothing
 }
 ?>
 
@@ -87,19 +87,37 @@ if($_POST && $_POST['dbname']!=""){
  </head>
  <body>
  	<h1><a href="index.php">Cosmo DB PHP Sample</a></h1>
-
+<div style="float:left">
 	
 
 
-<?php	
-	if($jsonArray['code']){
-		echo "<h1>Status: ".$jsonArray['code']."</h1>";
-		echo "<h2>".$jsonArray['message']."</h2>";
-	}else{
-		echo "<h1>Status: Database Created</h1>";
-		echo "<h2>Resource Id of Database". $jsonArray['_rid']."</h2>";
-	}
-?>
+ 		<div style="margin-top:10px;">
+			Create a Database: 
+			<form action="createDB.php" method="post">
+				<input name="dbname" type="text"/>
+				<input type="submit" value="Create">
+			</form>
+			</submit>
+		</div>
+	
+	
+ 	
+	
 
+<?php	
+
+if($_POST){
+	echo "<div>";
+	if($jsonArray['code']){
+		echo "<br /><h1>Status: ".$jsonArray['code']."</h1>";
+		echo "<h2>".$jsonArray['message']."</h2>";
+	}else if($jsonArray['_rid']){
+		echo "<h1>Status: Database Created</h1>";
+		echo "<h2>Resource Id of Database: ". $jsonArray['_rid']."</h2>";
+	}
+	echo "</div>";
+}
+?>
+</div>
  </body>
  </html>

@@ -28,21 +28,10 @@
  <body>
  	<h1>Cosmo DB PHP Sample</h1>
  
-	<div style="float:left">
-
- 		<div style="margin-top:10px">
-			Create a Database: 
-			<form action="action.php?action=create" method="post">
-				<input name="dbname" type="text"/>
-				<input type="submit" value="Create">
-			</form>
-			</submit>
-		<div>
 	
-	
- 	
-	</div>
+<a href="createDB.php">Create a database.</a><br />
 
+<a href="createColl.php">Create a collection.</a>
  
 
  </body>
