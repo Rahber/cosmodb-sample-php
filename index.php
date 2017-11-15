@@ -30,6 +30,7 @@
  
 	
 <a href="createDB.php">Create a database.</a><br />
+<a href="listDB.php">List all databases</a><br />
 <a href="deleteDB.php">Delete a database.</a><br />
 <a href="createColl.php">Create a collection.</a>
  
