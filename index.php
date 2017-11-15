@@ -1,12 +1,6 @@
- <?php
- 	header('Cache-Control: no-cache');
- 	header('Pragma: no-cache');
- 	require_once "var.php";
-	?>
 <html>
  <!--
  /** Rahber Ashraf
-     http://rahber.net 
  -->
  <head>
  	<title>COSMO DB php Sample</title>

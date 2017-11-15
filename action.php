@@ -1,60 +1,31 @@
 ﻿<?php
-header('Content-Type:text/html; charset=UTF-8');
+
 require_once "var.php";
-
-
 
 function genetrateAuthToken($master,$token,$signature) {
 	$authToken = "type=".$master."&ver=".$token."&sig=".$signature;
 	return $authToken;
 }
 
-
 function getToken($masterKey,$vrb,$today) {
-	
-	
-	
 	$rType= "dbs";
 	$rID = "";
-     
-   $key = base64_decode($masterKey);
-		$stringSign = $vrb."\n".$rType."\n".$rID."\n".$today."\n"."\n";
-
-		$stringSign = strtolower($stringSign);
-		
-
-
-		$encrypt = hash_hmac('sha256', $stringSign, $key, true);
-	
-		 
-		
-		 $signature = base64_encode($encrypt);
-  
-  
-
-    return urlencode($signature);
+	$key = base64_decode($masterKey);
+	$stringSign = $vrb."\n".$rType."\n".$rID."\n".$today."\n"."\n";
+	$stringSign = strtolower($stringSign);
+	$encrypt = hash_hmac('sha256', $stringSign, $key, true);
+	$signature = base64_encode($encrypt);
+	return urlencode($signature);
 }
 
-
-
 function curl_download($databaseAccountURL,$masterKey, $master, $vrb, $today, $token,  $appType, $apiVersion, $cacheControl, $userAgent , $dbName ){
- 
-    // is cURL installed yet?
-    if (!function_exists('curl_init')){
+	if (!function_exists('curl_init')){
         die('Sorry cURL is not installed!');
     }
-	
 	$data = array("id" => $dbName);                                                                    
 	$dataString = json_encode($data);   
-
-	
-	
-	 $authcode = genetrateAuthToken($master,$token,getToken($masterKey,$vrb,$today));
-  
- 
-
-  $ch = curl_init($databaseAccountURL);
-
+	$authcode = genetrateAuthToken($master,$token,getToken($masterKey,$vrb,$today));
+	$ch = curl_init($databaseAccountURL);
 	$header[] = 'Content-Length:' . strlen($dataString);
     $header[] = 'Accept: application/json';
     $header[] = 'Expect: 100-continue';
@@ -71,32 +42,18 @@ function curl_download($databaseAccountURL,$masterKey, $master, $vrb, $today, $t
       CURLOPT_POST => true,
       CURLOPT_POSTFIELDS => $dataString
     );
-
 	curl_setopt_array($ch, $options);
-
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_TIMEOUT, 10);
     $output = curl_exec($ch);
     curl_close($ch);
- echo "<br><br><br>";
     return $output;
 }
 
 
 if($_POST){
-	
 	$dbName = $_POST["dbname"];
 	$action = $_GET['action'];
-	
-	if($action=='create')
-	{
-		
-	}else{
-		
-		
-	}
-	
-	
 	$json = curl_download($databaseAccountURL,$masterKey, $master, $vrb, $today, $token, $appType, $apiVersion, $cacheControl, $userAgent, $dbName);
 	$jsonArray = json_decode($json, true);
 }
@@ -127,29 +84,19 @@ if($_POST){
  	</style>
  </head>
  <body>
- 	<h1><a href="index.php">Cosmo DB PHP Sample<a/></h1>
+ 	<h1><a href="index.php">Cosmo DB PHP Sample</a></h1>
 
 	
 
 
-	<?php
-	
+<?php	
 	if($jsonArray['code']){
 		echo "<h1>Status: ".$jsonArray['code']."</h1>";
-
-
-
 		echo "<h2>".$jsonArray['message']."</h2>";
-	}
-	else{
+	}else{
 		echo "<h1>Status: Database Created</h1>";
-		
-	
+		echo "<h2>Resource Id of Database". $jsonArray['_rid']."</h2>";
 	}
-	
-
-
-
 ?>
 
  </body>
