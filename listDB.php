@@ -52,7 +52,7 @@ function curl_download($databaseAccountURL,$masterKey, $master, $vrb, $today, $t
 
 
 if($_POST){
-	$json = curl_download($databaseAccountURL,$masterKey, $master, $vrb, $today, $token, $appType, $apiVersion, $cacheControl, $userAgent);
+ $json = curl_download($databaseAccountURL,$masterKey, $master, $vrb, $today, $token, $appType, $apiVersion, $cacheControl, $userAgent);
 	$jsonArray = json_decode($json, true);
 }else{
 	//do nothing
@@ -106,16 +106,19 @@ if($_POST){
 
 if($_POST){
 	echo "<div>";
-	if(1){
+	if($jsonArray['_count']!=""){
 		echo "<br /><h1>List of Databases</h1>";
-
-		
-		foreach($jsonArray['Databases'] as $key => $value){
-			echo "<h3>DatabaseName: ".$value['id'] . '</h3>';
-			echo "<h3>Database ResourceID: ".$value['_rid'] . '</h3><br>';
+		if($jsonArray['_count']==0){
+			echo "<h3>Currnetly no database exist</h3>";
+		}else{
+			foreach($jsonArray['Databases'] as $key => $value){
+				echo "<h3>DatabaseName: ".$value['id'] . '</h3>';
+				echo "<h3>Database ResourceID: ".$value['_rid'] . '</h3><br>';
+			}
 		}
 	}else{
-		//do nothing for now
+		echo "<br /><h1>Status: ".$jsonArray['code']."</h1>";
+		echo "<h2>".$jsonArray['message']."</h2>";
 	}
 	echo "</div>";
 }
