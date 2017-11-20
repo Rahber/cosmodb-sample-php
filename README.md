@@ -1,1 +1,3 @@
-Before running. Please make sure to edit var.php to edit databaseAccount and masterKey variables with your envirionment.
+Make sure to edit var.php with your databaseAccount and masterKey from your Cosmos DB envrionmnet. 
+
+The sample is ready to use.
